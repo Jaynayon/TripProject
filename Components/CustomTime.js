@@ -13,15 +13,6 @@ export default function CustomTime({ required = false, label, placeholder, onCha
     const [mode, setMode] = useState("date")
     const [open, setOpen] = useState(false);
 
-    const wheelPickerData = [
-        "sunday",
-        "monday",
-        "tuesday",
-        "wednesday",
-        "thursday",
-        "friday"
-    ];
-
     function TimeModal() {
         return (
             <View style={styles.centeredView}>
@@ -31,7 +22,9 @@ export default function CustomTime({ required = false, label, placeholder, onCha
                     visible={modalVisible}
                     onRequestClose={() => {
                         setModalVisible(!modalVisible);
-                    }}>
+                    }}
+                    statusBarTranslucent
+                >
                     <View style={[styles.centeredView, { backgroundColor: "rgba(0, 0, 0, 0.5)" }]} >
                         <View style={styles.modalView}>
                             <TouchableOpacity style={styles.indicator} onPress={() => setModalVisible(!modalVisible)} />

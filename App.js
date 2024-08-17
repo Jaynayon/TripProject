@@ -12,7 +12,7 @@ export default function App() {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.dummyTopNav} />
-      {/* <BookingsScreen /> */}
+      <BookingsScreen />
       {/* <NotificationsScreen /> */}
       {/* <NotificationsDetailsScreen /> */}
       {/* <MaintenanceScreen /> */}
@@ -22,11 +22,11 @@ export default function App() {
         time="09:00"
       /> */}
       {/* <RefuelScreen /> */}
-      <RefuelDetailsScreen
+      {/* <RefuelDetailsScreen
         milage="10296"
         date="2024-05-31"
         price="5.00"
-      />
+      /> */}
       <View style={styles.dummyTabNav} />
     </View >
   );

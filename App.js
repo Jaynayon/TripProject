@@ -5,6 +5,8 @@ import NotificationsScreen from './Screens/NotificationsScreen';
 import NotificationsDetailsScreen from './Screens/NotificationsDetailsScreen';
 import MaintenanceScreen from './Screens/MaintenanceScreen';
 import MaintenanceDetailsScreen from './Screens/MaintenanceDetailsScreen';
+import RefuelScreen from './Screens/RefuelScreen';
+import RefuelDetailsScreen from './Screens/RefuelDetailsScreen';
 
 export default function App() {
   return (
@@ -19,6 +21,12 @@ export default function App() {
         date="2024-05-31"
         time="09:00"
       /> */}
+      {/* <RefuelScreen /> */}
+      <RefuelDetailsScreen
+        milage="10296"
+        date="2024-05-31"
+        price="5.00"
+      />
       <View style={styles.dummyTabNav} />
     </View >
   );

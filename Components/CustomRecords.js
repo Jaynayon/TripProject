@@ -1,11 +1,15 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
-export default function CustomRecords({ milage = "null", date = "null", time = "null" }) {
+export default function CustomRecords({ maintenance = false, milage = "null", date = "null", time = "null" }) {
     return (
         <View style={styles.container}>
             <Text style={{ fontSize: 20 }}>{milage}</Text>
-            <Text style={{ fontSize: 20, fontWeight: "bold", paddingBottom: 10 }}>{date} {time}</Text>
+            {maintenance ? (
+                <Text style={{ fontSize: 20, fontWeight: "bold", paddingBottom: 10 }}>{date} {time}</Text>
+            ) : (
+                <Text style={{ fontSize: 20, fontWeight: "bold", paddingBottom: 10 }}>{date}</Text>
+            )}
         </View>
     );
 }

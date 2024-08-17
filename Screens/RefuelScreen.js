@@ -3,7 +3,7 @@ import { StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform, Text } fr
 import { Card } from 'react-native-paper';
 import CustomRecords from '../Components/CustomRecords';
 
-export default function MaintenanceScreen() {
+export default function RefuelScreen() {
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -12,15 +12,13 @@ export default function MaintenanceScreen() {
             <ScrollView>
                 <View style={styles.container}>
                     <Card style={styles.paper}>
-                        <Text style={styles.title}>Maintenance Records</Text>
+                        <Text style={styles.title}>Refuel Records</Text>
                         <CustomRecords
-                            maintenance
                             milage="10296"
                             date="2024-05-31"
                             time="09:00"
                         />
                         <CustomRecords
-                            maintenance
                             milage="10278"
                             date="2024-05-31"
                             time="11:00"

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet, View, Text, TextInput, Modal, Pressable, TouchableOpacity, ScrollView } from 'react-native';
-import { Picker } from '@react-native-picker/picker'
+import { StyleSheet, View, Text, TextInput, Modal, Pressable, TouchableOpacity, ScrollView, Button } from 'react-native';
+// import { Picker } from '@react-native-picker/picker'
+// import DatePicker from 'react-native-date-picker' cannot work in Expo Go
 import Icon from 'react-native-vector-icons/Entypo';
 import DateTimePicker from "@react-native-community/datetimepicker"
 import RNPickerSelect from 'react-native-picker-select';
@@ -9,7 +10,8 @@ import CustomButton from './CustomButton';
 export default function CustomTime({ required = false, label, placeholder, onChange, value }) {
     const [modalVisible, setModalVisible] = useState(false);
     const [date, setDate] = useState(new Date());
-    const [mode, setMode] = useState("date");
+    const [mode, setMode] = useState("date")
+    const [open, setOpen] = useState(false);
 
     const wheelPickerData = [
         "sunday",
@@ -49,7 +51,7 @@ export default function CustomTime({ required = false, label, placeholder, onCha
                                     display='spinner'
                                     style={{ backgroundColor: "pink" }}
                                 /> */}
-                                <Picker style={{ flex: 1 }}>
+                                {/* <Picker style={{ flex: 1 }}>
                                     <Picker.Item label="01" value={1} />
                                     <Picker.Item label="02" value={2} />
                                     <Picker.Item label="03" value={3} />
@@ -70,7 +72,7 @@ export default function CustomTime({ required = false, label, placeholder, onCha
                                     <Picker.Item label="07" value={7} />
                                     <Picker.Item label="08" value={8} />
                                     <Picker.Item label="09" value={9} />
-                                </Picker>
+                                </Picker> */}
 
                                 {/* <View style={{ backgroundColor: "blue", flex: 1 }} /> */}
                             </View>

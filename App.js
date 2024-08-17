@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import BookingsScreen from './Screens/BookingsScreen';
+import NotificationsScreen from './Screens/NotificationsScreen';
 import ModalTest from './Components/ModalTest';
 
 
@@ -12,7 +13,8 @@ export default function App() {
     // </View>
     <View style={styles.container}>
       <View style={{ height: 70, backgroundColor: "#0e3366" }} />
-      <BookingsScreen />
+      {/* <BookingsScreen /> */}
+      <NotificationsScreen />
       {/* <ModalTest /> */}
       <View style={{ height: 70, backgroundColor: "#c2c2c2" }} />
     </View >

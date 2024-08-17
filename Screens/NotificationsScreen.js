@@ -1,9 +1,6 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Button, ScrollView, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import { Card } from 'react-native-paper';
-import CustomTextfield from '../Components/CustomTextfield';
-import CustomButton from '../Components/CustomButton';
-import CustomTime from '../Components/CustomTime';
 import CustomNotification from '../Components/CustomNotification';
 
 export default function NotificationsScreen() {
@@ -17,10 +14,10 @@ export default function NotificationsScreen() {
                     <Card style={styles.paper}>
                         <CustomNotification maintenance />
                         <CustomNotification />
-                        <CustomNotification maintenance />
+                        {/* <CustomNotification maintenance />
                         <CustomNotification />
                         <CustomNotification maintenance />
-                        <CustomNotification />
+                        <CustomNotification /> */}
                     </Card>
                 </View >
             </ScrollView>

@@ -1,6 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button, ScrollView, KeyboardAvoidingView, Platform, Keyboard } from 'react-native';
-import { Card } from 'react-native-paper';
+import { StyleSheet, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 export default function CustomNotification({ maintenance = false }) {

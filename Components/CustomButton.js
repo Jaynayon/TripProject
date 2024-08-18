@@ -12,8 +12,7 @@ export default function CustomButton({ onPress, label }) {
 const styles = StyleSheet.create({
     button: {
         width: "100%",
-        backgroundColor:
-            '#3488ff', // Blue color
+        backgroundColor: '#3488ff',
         borderRadius: 8,
         padding: 12,
         alignItems: 'center',
@@ -22,7 +21,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     buttonText: {
-        color: '#fff', // White text color
+        color: '#fff',
         fontSize: 22,
     },
 });

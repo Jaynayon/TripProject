@@ -29,7 +29,7 @@ export default function RefuelDetailsScreen({ milage = "", date = "", price = ""
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
             <Formik
-                initialValues={{ milage: milage, date: date, price: price }}
+                initialValues={{ milage, date, price }}
                 onSubmit={(values) => {
                     console.log(values)
                 }}

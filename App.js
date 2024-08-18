@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import BookingsScreen from './Screens/BookingsScreen';
 import NotificationsScreen from './Screens/NotificationsScreen';
 import NotificationsDetailsScreen from './Screens/NotificationsDetailsScreen';
@@ -12,7 +11,7 @@ export default function App() {
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.dummyTopNav} />
-      <BookingsScreen />
+      {/* <BookingsScreen /> */}
       {/* <NotificationsScreen /> */}
       {/* <NotificationsDetailsScreen /> */}
       {/* <MaintenanceScreen /> */}
@@ -21,11 +20,11 @@ export default function App() {
         date="2024-05-31"
       /> */}
       {/* <RefuelScreen /> */}
-      {/* <RefuelDetailsScreen
+      <RefuelDetailsScreen
         milage="10296"
         date="2024-10-21"
         price="5.00"
-      /> */}
+      />
       <View style={styles.dummyTabNav} />
     </View >
   );

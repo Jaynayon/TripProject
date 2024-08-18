@@ -29,7 +29,7 @@ export default function MaintenanceDetailsScreen({ milage = "", date = "", time 
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
             <Formik
-                initialValues={{ milage: milage, date: date, time: time, remarks: remarks }}
+                initialValues={{ milage, date, time, remarks }}
                 onSubmit={(values) => {
                     console.log(values)
                 }}

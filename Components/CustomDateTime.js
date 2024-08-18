@@ -9,12 +9,12 @@ import WheelPicker from 'react-native-wheely';
 
 export default function CustomDateTime({ time = false, required = false, label, onChange, value }) {
     const date = new Date();
+    const year = date.getFullYear();
     const [modalVisible, setModalVisible] = useState(false);
 
     const displayValue = () => value || (time ? "Select Time" : "Select Date");
 
     function DateModal() {
-        const year = date.getFullYear();
         const months = Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, '0'));
         const days = Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'));
 
@@ -85,7 +85,10 @@ export default function CustomDateTime({ time = false, required = false, label, 
                 >
                     <View style={styles.centeredView} >
                         <View style={styles.modalView}>
-                            <TouchableOpacity style={styles.indicator} onPress={() => setModalVisible(!modalVisible)} />
+                            <TouchableOpacity
+                                style={styles.indicator}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            />
                             <Text style={styles.title}>Select Date</Text>
                             <View style={{ flex: 1, flexDirection: "row", margin: 0 }}>
                                 <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -117,7 +120,10 @@ export default function CustomDateTime({ time = false, required = false, label, 
                                 </View>
                             </View>
                             <View style={{ flex: 1, flexDirection: "column-reverse" }}>
-                                <CustomButton onPress={handlePress} label="Select" />
+                                <CustomButton
+                                    onPress={handlePress}
+                                    label="Select"
+                                />
                             </View>
                         </View>
                     </View>
@@ -165,7 +171,10 @@ export default function CustomDateTime({ time = false, required = false, label, 
                 >
                     <View style={styles.centeredView} >
                         <View style={styles.modalView}>
-                            <TouchableOpacity style={styles.indicator} onPress={() => setModalVisible(!modalVisible)} />
+                            <TouchableOpacity
+                                style={styles.indicator}
+                                onPress={() => setModalVisible(!modalVisible)}
+                            />
                             <Text style={styles.title}>Select Time</Text>
                             <View style={{ flex: 1, flexDirection: "row", margin: 0 }}>
                                 <View style={{ flex: 1 }} >
@@ -194,7 +203,10 @@ export default function CustomDateTime({ time = false, required = false, label, 
                                 </View>
                             </View>
                             <View style={{ flex: 1, flexDirection: "column-reverse" }}>
-                                <CustomButton onPress={handlePress} label="Select" />
+                                <CustomButton
+                                    onPress={handlePress}
+                                    label="Select"
+                                />
                             </View>
                         </View>
                     </View>
@@ -261,26 +273,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.25,
         shadowRadius: 4,
         elevation: 5,
-    },
-    button: {
-        borderRadius: 20,
-        padding: 10,
-        elevation: 2,
-    },
-    buttonOpen: {
-        backgroundColor: '#F194FF',
-    },
-    buttonClose: {
-        backgroundColor: '#2196F3',
-    },
-    textStyle: {
-        color: 'white',
-        fontWeight: 'bold',
-        textAlign: 'center',
-    },
-    modalText: {
-        marginBottom: 15,
-        textAlign: 'center',
     },
     indicator: {
         width: 40,

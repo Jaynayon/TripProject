@@ -21,16 +21,51 @@ export default function CustomDateTime({ time = false, required = false, label, 
         const isValidDate = (dateValue) => /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01])$/.test(dateValue);
 
         // Initialize selectedMonth and selectedDay states with validation
-        const [selectedMonth, setSelectedMonth] = useState(() =>
-            value && isValidDate(value) ? months.indexOf(value.substring(5, 7)) : 0
-        );
-        const [selectedDay, setSelectedDay] = useState(() =>
-            value && isValidDate(value) ? days.indexOf(value.substring(8, 10)) : 0
-        );
+        const [selectedMonth, setSelectedMonth] = useState(() => {
+            if (value && isValidDate(value)) {
+                const month = value.substring(5, 7);
+                return months.indexOf(month);
+            }
+            return 0; // Default to January if no valid value is provided
+        });
+
+        const [selectedDay, setSelectedDay] = useState(() => {
+            if (value && isValidDate(value)) {
+                const day = value.substring(8, 10);
+                return parseInt(day, 10) - 1; // Subtract 1 to get zero-based index
+            }
+            return 0; // Default to the 1st of the month if no valid value is provided
+        });
+
+        // Function to calculate the number of days in a given month
+        const calculateNumberOfDays = (monthIndex) => {
+            return new Date(year, monthIndex + 1, 0).getDate();
+        };
+
+        // State for the number of days in the selected month
+        // const [numberOfDays, setNumberOfDays] = useState(() => calculateNumberOfDays(selectedMonth));
+
+        // Update numberOfDays and adjust selectedDay if necessary when selectedMonth changes
+        useEffect(() => {
+            const daysInMonth = calculateNumberOfDays(selectedMonth);
+            // setNumberOfDays(daysInMonth);
+
+            // Adjust selectedDay if the current day exceeds the number of days in the new month
+            if (selectedDay >= daysInMonth) {
+                setSelectedDay(daysInMonth - 1);
+            }
+        }, [selectedMonth]);
+
+        // const days = Array.from({ length: numberOfDays }, (_, i) => (i + 1).toString().padStart(2, '0'));
 
         const handlePress = () => {
             const month = months[selectedMonth]; // Month from the array (01-12)
-            const day = days[selectedDay]; // Day from the array (01-31)
+
+            // Get the number of days in the selected month
+            const daysInMonth = calculateNumberOfDays(selectedMonth);
+
+            // Adjust the day if it's beyond the last valid day of the month
+            const day = Math.min(parseInt(days[selectedDay]), daysInMonth).toString().padStart(2, '0');
 
             // Format the date as "yyyy-mm-dd"
             const date = `${year}-${month}-${day}`;

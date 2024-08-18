@@ -29,7 +29,7 @@ export default function BookingsScreen() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
             <Formik
-                initialValues={{ startMilage: '', startTime: '03:02', endMilage: '', endTime: '' }}
+                initialValues={{ startMilage: '', startTime: '', endMilage: '', endTime: '' }}
                 onSubmit={(values) => {
                     console.log(values)
                 }}

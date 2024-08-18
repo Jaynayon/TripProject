@@ -1,19 +1,31 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput, Modal, Pressable, TouchableOpacity, ScrollView, Button } from 'react-native';
 // import { Picker } from '@react-native-picker/picker'
 // import DatePicker from 'react-native-date-picker' cannot work in Expo Go
 import Icon from 'react-native-vector-icons/Entypo';
-import DateTimePicker from "@react-native-community/datetimepicker"
-import RNPickerSelect from 'react-native-picker-select';
 import CustomButton from './CustomButton';
+import WheelPicker from 'react-native-wheely';
 
 export default function CustomDateTime({ time = false, required = false, label, onChange, value }) {
     const [modalVisible, setModalVisible] = useState(false);
-    const [date, setDate] = useState(new Date());
-    const [mode, setMode] = useState("date")
-    const [open, setOpen] = useState(false);
+
+    const displayValue = () => value || (time ? "Select Time" : "Select Date");
 
     function TimeModal() {
+        const [selectedHour, setSelectedHour] = useState(0);
+        const [selectedMinute, setSelectedMinute] = useState(0);
+
+        const hours = Array.from({ length: 24 }, (_, i) => i.toString().padStart(2, '0'));
+        const minutes = Array.from({ length: 60 }, (_, i) => i.toString().padStart(2, '0'));
+
+        const handlePress = () => {
+            // Format the time as "HH:mm"
+            const time = `${hours[selectedHour]}:${minutes[selectedMinute]}`;
+            onChange(time);
+            console.log(time);
+            setModalVisible(!modalVisible);
+        }
+
         return (
             <View style={styles.centeredView}>
                 <Modal
@@ -30,39 +42,29 @@ export default function CustomDateTime({ time = false, required = false, label, 
                             <TouchableOpacity style={styles.indicator} onPress={() => setModalVisible(!modalVisible)} />
                             <Text style={styles.title}>{time ? "Select Time" : "Select Date"}</Text>
                             <View style={{ flex: 1, flexDirection: "row", margin: 0 }}>
-                                {/* <DateTimePicker
-                                    value={date}
-                                    mode="time"
-                                    display='spinner'
-                                    style={{ backgroundColor: "pink" }}
-                                /> */}
-                                {/* <Picker style={{ flex: 1 }}>
-                                    <Picker.Item label="01" value={1} />
-                                    <Picker.Item label="02" value={2} />
-                                    <Picker.Item label="03" value={3} />
-                                    <Picker.Item label="04" value={4} />
-                                    <Picker.Item label="05" value={5} />
-                                    <Picker.Item label="06" value={6} />
-                                    <Picker.Item label="07" value={7} />
-                                    <Picker.Item label="08" value={8} />
-                                    <Picker.Item label="09" value={9} />
-                                </Picker>
-                                <Picker style={{ flex: 1 }}>
-                                    <Picker.Item label="01" value={1} />
-                                    <Picker.Item label="02" value={2} />
-                                    <Picker.Item label="03" value={3} />
-                                    <Picker.Item label="04" value={4} />
-                                    <Picker.Item label="05" value={5} />
-                                    <Picker.Item label="06" value={6} />
-                                    <Picker.Item label="07" value={7} />
-                                    <Picker.Item label="08" value={8} />
-                                    <Picker.Item label="09" value={9} />
-                                </Picker> */}
-
-                                {/* <View style={{ backgroundColor: "blue", flex: 1 }} /> */}
+                                <View style={{ flex: 1 }} >
+                                    <WheelPicker
+                                        selectedIndicatorStyle={{ backgroundColor: "transparent" }}
+                                        itemTextStyle={{ fontSize: 20, fontWeight: "bold" }}
+                                        itemStyle={{ alignSelf: "flex-end", bottom: 50, right: 10 }}
+                                        selectedIndex={selectedHour}
+                                        options={hours}
+                                        onChange={(index) => setSelectedHour(index)}
+                                    />
+                                </View>
+                                <View style={{ flex: 1 }} >
+                                    <WheelPicker
+                                        selectedIndicatorStyle={{ backgroundColor: "transparent" }}
+                                        itemTextStyle={{ fontSize: 20, fontWeight: "bold" }}
+                                        itemStyle={{ alignSelf: "flex-start", bottom: 50, left: 10, fontSize: 20 }}
+                                        selectedIndex={selectedMinute}
+                                        options={minutes}
+                                        onChange={(index) => setSelectedMinute(index)}
+                                    />
+                                </View>
                             </View>
                             <View style={{ flex: 1, flexDirection: "column-reverse" }}>
-                                <CustomButton onPress={() => setModalVisible(!modalVisible)} label="Select" />
+                                <CustomButton onPress={handlePress} label="Select" />
                             </View>
                         </View>
                     </View>
@@ -81,7 +83,9 @@ export default function CustomDateTime({ time = false, required = false, label, 
                 style={[styles.textInput, { paddingRight: 15, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }]}
                 onPress={() => setModalVisible(true)}
             >
-                <Text style={{ fontSize: 18, fontWeight: "500", color: "#d8d8d8" }}>{time ? "Select Time" : "Select Date"}</Text>
+                <Text style={{ fontSize: 18, fontWeight: "500", color: value ? '#333' : "#d8d8d8" }}>
+                    {displayValue()}
+                </Text>
                 <Icon name="chevron-down" size={18} color="#d8d8d8" />
             </Pressable>
             <TimeModal />

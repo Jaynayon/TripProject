@@ -19,7 +19,6 @@ export default function App() {
       {/* <MaintenanceDetailsScreen
         milage="10296"
         date="2024-05-31"
-        time="09:00"
       /> */}
       {/* <RefuelScreen /> */}
       {/* <RefuelDetailsScreen

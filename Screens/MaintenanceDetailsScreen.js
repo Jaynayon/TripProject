@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button, ScrollView, KeyboardAvoidingView, Platf
 import { Card } from 'react-native-paper';
 import CustomTextfield from '../Components/CustomTextfield';
 import CustomButton from '../Components/CustomButton';
-import CustomTime from '../Components/CustomTime';
+import CustomDateTime from '../Components/CustomDateTime';
 import { Formik } from 'formik';
 
 export default function MaintenanceDetailsScreen({ milage = "", date = "", time = "", remarks = "" }) {
@@ -46,17 +46,17 @@ export default function MaintenanceDetailsScreen({ milage = "", date = "", time 
                                     onChange={props.handleChange('milage')}
                                     value={props.values.milage}
                                 />
-                                <CustomTime
+                                <CustomDateTime
                                     required
                                     label="Date of Maintenance"
                                     placeholder="Select Time"
                                     onChange={props.handleChange('date')}
                                     value={props.values.date}
                                 />
-                                <CustomTextfield
+                                <CustomDateTime
                                     required
+                                    time
                                     label="Time of Maintenance"
-                                    placeholder="Enter Current Milage"
                                     onChange={props.handleChange('time')}
                                     value={props.values.time}
                                 />

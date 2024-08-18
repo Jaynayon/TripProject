@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button, ScrollView, KeyboardAvoidingView, Platf
 import { Card } from 'react-native-paper';
 import CustomTextfield from '../Components/CustomTextfield';
 import CustomButton from '../Components/CustomButton';
-import CustomTime from '../Components/CustomTime';
+import CustomeDateTime from '../Components/CustomDateTime';
 import { Formik } from 'formik';
 
 export default function BookingsScreen() {
@@ -45,9 +45,9 @@ export default function BookingsScreen() {
                                     onChange={props.handleChange('startMilage')}
                                     value={props.values.startMilage}
                                 />
-                                <CustomTime
+                                <CustomeDateTime
+                                    time
                                     label="Start Time of the Trip"
-                                    placeholder="Select Time"
                                     onChange={props.handleChange('startTime')}
                                     value={props.values.startTime}
                                 />
@@ -57,9 +57,9 @@ export default function BookingsScreen() {
                                     onChange={props.handleChange('endMilage')}
                                     value={props.values.endMilage}
                                 />
-                                <CustomTime
+                                <CustomeDateTime
+                                    time
                                     label="End Time of the Trip"
-                                    placeholder="Select Time"
                                     onChange={props.handleChange('endTime')}
                                     value={props.values.endTime}
                                 />

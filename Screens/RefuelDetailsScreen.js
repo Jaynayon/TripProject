@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Button, ScrollView, KeyboardAvoidingView, Platf
 import { Card } from 'react-native-paper';
 import CustomTextfield from '../Components/CustomTextfield';
 import CustomButton from '../Components/CustomButton';
-import CustomTime from '../Components/CustomTime';
+import CustomDateTime from '../Components/CustomDateTime';
 import { Formik } from 'formik';
 
 export default function RefuelDetailsScreen({ milage = "", date = "", price = "" }) {
@@ -46,7 +46,7 @@ export default function RefuelDetailsScreen({ milage = "", date = "", price = ""
                                     onChange={props.handleChange('milage')}
                                     value={props.values.milage}
                                 />
-                                <CustomTime
+                                <CustomDateTime
                                     required
                                     label="Date"
                                     placeholder="Select Date"

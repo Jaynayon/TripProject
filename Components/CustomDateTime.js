@@ -7,7 +7,7 @@ import DateTimePicker from "@react-native-community/datetimepicker"
 import RNPickerSelect from 'react-native-picker-select';
 import CustomButton from './CustomButton';
 
-export default function CustomTime({ required = false, label, placeholder, onChange, value }) {
+export default function CustomDateTime({ time = false, required = false, label, onChange, value }) {
     const [modalVisible, setModalVisible] = useState(false);
     const [date, setDate] = useState(new Date());
     const [mode, setMode] = useState("date")
@@ -28,15 +28,7 @@ export default function CustomTime({ required = false, label, placeholder, onCha
                     <View style={[styles.centeredView, { backgroundColor: "rgba(0, 0, 0, 0.5)" }]} >
                         <View style={styles.modalView}>
                             <TouchableOpacity style={styles.indicator} onPress={() => setModalVisible(!modalVisible)} />
-                            <Text style={styles.title}>Select Time</Text>
-                            {/* <RNPickerSelect
-                                onValueChange={value => console.log(value)}
-                                items={[
-                                    { label: "JavaScript", value: 'JavaScript' },
-                                    { label: "Python", value: 'Python' },
-                                    { label: "C", value: 'C' },
-                                ]}
-                            /> */}
+                            <Text style={styles.title}>{time ? "Select Time" : "Select Date"}</Text>
                             <View style={{ flex: 1, flexDirection: "row", margin: 0 }}>
                                 {/* <DateTimePicker
                                     value={date}
@@ -89,7 +81,7 @@ export default function CustomTime({ required = false, label, placeholder, onCha
                 style={[styles.textInput, { paddingRight: 15, flexDirection: "row", justifyContent: "space-between", alignItems: "center" }]}
                 onPress={() => setModalVisible(true)}
             >
-                <Text style={{ fontSize: 18, fontWeight: "500", color: "#d8d8d8" }}>Select Time</Text>
+                <Text style={{ fontSize: 18, fontWeight: "500", color: "#d8d8d8" }}>{time ? "Select Time" : "Select Date"}</Text>
                 <Icon name="chevron-down" size={18} color="#d8d8d8" />
             </Pressable>
             <TimeModal />

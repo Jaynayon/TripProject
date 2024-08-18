@@ -1,9 +1,9 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, View, ScrollView, KeyboardAvoidingView, Platform, Text } from 'react-native';
 import { Card } from 'react-native-paper';
-import CustomNotification from '../Components/CustomNotification';
+import CustomRecords from '../Components/CustomRecords';
 
-export default function NotificationsScreen() {
+export default function MaintenanceScreen() {
     return (
         <KeyboardAvoidingView
             style={styles.container}
@@ -12,12 +12,19 @@ export default function NotificationsScreen() {
             <ScrollView>
                 <View style={styles.container}>
                     <Card style={styles.paper}>
-                        <CustomNotification maintenance />
-                        <CustomNotification />
-                        <CustomNotification maintenance />
-                        <CustomNotification />
-                        <CustomNotification maintenance />
-                        <CustomNotification />
+                        <Text style={styles.title}>Maintenance Records</Text>
+                        <CustomRecords
+                            maintenance
+                            milage="10296"
+                            date="2024-05-31"
+                            time="09:00"
+                        />
+                        <CustomRecords
+                            maintenance
+                            milage="10278"
+                            date="2024-05-31"
+                            time="11:00"
+                        />
                     </Card>
                 </View >
             </ScrollView>
@@ -33,7 +40,7 @@ const styles = StyleSheet.create({
     },
     paper: {
         width: "100%",
-        paddingBottom: 16,
+        padding: 16,
         backgroundColor: '#fff',
         borderRadius: 5,
         elevation: 5, // For Android shadow
@@ -41,5 +48,12 @@ const styles = StyleSheet.create({
         shadowOffset: { width: 0, height: 2 }, // For iOS shadow
         shadowOpacity: 0.3, // For iOS shadow
         shadowRadius: 4, // For iOS shadow
+        paddingBottom: 20
     },
+    title: {
+        color: "#2e4e7b",
+        fontWeight: "bold",
+        fontSize: 22,
+        marginBottom: 8
+    }
 });

@@ -3,10 +3,10 @@ import { StyleSheet, View, Text, Button, ScrollView, KeyboardAvoidingView, Platf
 import { Card } from 'react-native-paper';
 import CustomTextfield from '../Components/CustomTextfield';
 import CustomButton from '../Components/CustomButton';
-import CustomeDateTime from '../Components/CustomDateTime';
+import CustomDateTime from '../Components/CustomDateTime';
 import { Formik } from 'formik';
 
-export default function BookingsScreen() {
+export default function RefuelDetailsScreen({ milage = "", date = "", price = "" }) {
     const [keyboardOpen, setKeyboardOpen] = useState(false);
 
     useEffect(() => {
@@ -29,7 +29,7 @@ export default function BookingsScreen() {
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         >
             <Formik
-                initialValues={{ startMilage: '', startTime: '', endMilage: '', endTime: '' }}
+                initialValues={{ milage: milage, date: date, price: price }}
                 onSubmit={(values) => {
                     console.log(values)
                 }}
@@ -38,33 +38,31 @@ export default function BookingsScreen() {
                     <ScrollView>
                         <View style={styles.container}>
                             <Card style={styles.paper}>
-                                <Text style={styles.title}>Trip Details</Text>
+                                <Text style={styles.title}>Refuel Details</Text>
                                 <CustomTextfield
-                                    label="Current Vehicle Milage"
+                                    required
+                                    label="Milage"
                                     placeholder="Enter Current Milage"
-                                    onChange={props.handleChange('startMilage')}
-                                    value={props.values.startMilage}
+                                    onChange={props.handleChange('milage')}
+                                    value={props.values.milage}
                                 />
-                                <CustomeDateTime
-                                    time
-                                    label="Start Time of the Trip"
-                                    onChange={props.handleChange('startTime')}
-                                    value={props.values.startTime}
+                                <CustomDateTime
+                                    required
+                                    label="Date"
+                                    placeholder="Select Date"
+                                    onChange={props.handleChange('date')}
+                                    value={props.values.date}
                                 />
                                 <CustomTextfield
-                                    label="Vehicle Milage after Trip"
-                                    placeholder="Enter Current Milage"
-                                    onChange={props.handleChange('endMilage')}
-                                    value={props.values.endMilage}
-                                />
-                                <CustomeDateTime
-                                    time
-                                    label="End Time of the Trip"
-                                    onChange={props.handleChange('endTime')}
-                                    value={props.values.endTime}
+                                    required
+                                    price
+                                    label="Price"
+                                    placeholder="Enter Price"
+                                    onChange={props.handleChange('price')}
+                                    value={props.values.price}
                                 />
                             </Card>
-                            <View style={{ flex: 1, marginTop: !keyboardOpen ? "30%" : "5%", flexDirection: "column-reverse" }}>
+                            <View style={{ flex: 1, marginTop: !keyboardOpen ? "55%" : "5%", flexDirection: "column-reverse" }}>
                                 <CustomButton onPress={props.handleSubmit} label="Save" />
                             </View>
                         </View >

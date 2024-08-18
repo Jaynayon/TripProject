@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Pressable, TouchableOpacity } from 'react-native';
 import Modal from "react-native-modal";
-// import { Picker } from '@react-native-picker/picker'
-// import DatePicker from 'react-native-date-picker' cannot work in Expo Go
 import Icon from 'react-native-vector-icons/Entypo';
 import CustomButton from './CustomButton';
 import WheelPicker from 'react-native-wheely';
@@ -80,7 +78,7 @@ export default function CustomDateTime({ time = false, required = false, label, 
                     isVisible={modalVisible}
                     statusBarTranslucent
                     hasBackdrop
-                    propagateSwipe
+                    onBackButtonPress={() => setModalVisible(!modalVisible)}
                     onBackdropPress={() => setModalVisible(!modalVisible)}
                 >
                     <View style={styles.centeredView} >
@@ -166,7 +164,7 @@ export default function CustomDateTime({ time = false, required = false, label, 
                     isVisible={modalVisible}
                     statusBarTranslucent
                     hasBackdrop
-                    propagateSwipe
+                    onBackButtonPress={() => setModalVisible(!modalVisible)}
                     onBackdropPress={() => setModalVisible(!modalVisible)}
                 >
                     <View style={styles.centeredView} >

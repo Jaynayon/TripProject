@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Modal, Pressable, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, Pressable, TouchableOpacity } from 'react-native';
+import Modal from "react-native-modal";
 // import { Picker } from '@react-native-picker/picker'
 // import DatePicker from 'react-native-date-picker' cannot work in Expo Go
 import Icon from 'react-native-vector-icons/Entypo';
@@ -7,12 +8,12 @@ import CustomButton from './CustomButton';
 import WheelPicker from 'react-native-wheely';
 
 export default function CustomDateTime({ time = false, required = false, label, onChange, value }) {
+    const date = new Date();
     const [modalVisible, setModalVisible] = useState(false);
 
     const displayValue = () => value || (time ? "Select Time" : "Select Date");
 
     function DateModal() {
-        const date = new Date();
         const year = date.getFullYear();
         const months = Array.from({ length: 12 }, (_, i) => (i + 1).toString().padStart(2, '0'));
         const days = Array.from({ length: 31 }, (_, i) => (i + 1).toString().padStart(2, '0'));
@@ -42,21 +43,15 @@ export default function CustomDateTime({ time = false, required = false, label, 
             return new Date(year, monthIndex + 1, 0).getDate();
         };
 
-        // State for the number of days in the selected month
-        // const [numberOfDays, setNumberOfDays] = useState(() => calculateNumberOfDays(selectedMonth));
-
         // Update numberOfDays and adjust selectedDay if necessary when selectedMonth changes
         useEffect(() => {
             const daysInMonth = calculateNumberOfDays(selectedMonth);
-            // setNumberOfDays(daysInMonth);
 
             // Adjust selectedDay if the current day exceeds the number of days in the new month
             if (selectedDay >= daysInMonth) {
                 setSelectedDay(daysInMonth - 1);
             }
         }, [selectedMonth]);
-
-        // const days = Array.from({ length: numberOfDays }, (_, i) => (i + 1).toString().padStart(2, '0'));
 
         const handlePress = () => {
             const month = months[selectedMonth]; // Month from the array (01-12)
@@ -78,15 +73,17 @@ export default function CustomDateTime({ time = false, required = false, label, 
         return (
             <View style={styles.centeredView}>
                 <Modal
+                    style={{ margin: 0 }}
                     animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                        setModalVisible(!modalVisible);
-                    }}
+                    // swipeDirection={['down']}
+                    onSwipeComplete={() => setModalVisible(!modalVisible)}
+                    isVisible={modalVisible}
                     statusBarTranslucent
+                    hasBackdrop
+                    propagateSwipe
+                    onBackdropPress={() => setModalVisible(!modalVisible)}
                 >
-                    <View style={[styles.centeredView, { backgroundColor: "rgba(0, 0, 0, 0.5)" }]} >
+                    <View style={styles.centeredView} >
                         <View style={styles.modalView}>
                             <TouchableOpacity style={styles.indicator} onPress={() => setModalVisible(!modalVisible)} />
                             <Text style={styles.title}>Select Date</Text>
@@ -102,6 +99,7 @@ export default function CustomDateTime({ time = false, required = false, label, 
                                         containerStyle={{ height: 110 }}
                                         selectedIndex={selectedMonth}
                                         options={months}
+                                        decelerationRate={15}
                                         onChange={(index) => setSelectedMonth(index)}
                                     />
                                 </View>
@@ -113,6 +111,7 @@ export default function CustomDateTime({ time = false, required = false, label, 
                                         itemStyle={{ flexDirection: "row-reverse", bottom: 50 }}
                                         selectedIndex={selectedDay}
                                         options={days}
+                                        decelerationRate={15}
                                         onChange={(index) => setSelectedDay(index)}
                                     />
                                 </View>
@@ -142,8 +141,6 @@ export default function CustomDateTime({ time = false, required = false, label, 
             isValidTime(value) ? minutes.indexOf(value.substring(3, 5)) : 0
         );
 
-        console.log(value)
-
         const handlePress = () => {
             // Format the time as "HH:mm"
             const time = `${hours[selectedHour]}:${minutes[selectedMinute]}`;
@@ -156,15 +153,17 @@ export default function CustomDateTime({ time = false, required = false, label, 
         return (
             <View style={styles.centeredView}>
                 <Modal
+                    style={{ margin: 0 }}
                     animationType="slide"
-                    transparent={true}
-                    visible={modalVisible}
-                    onRequestClose={() => {
-                        setModalVisible(!modalVisible);
-                    }}
+                    // swipeDirection={['down']}
+                    onSwipeComplete={() => setModalVisible(!modalVisible)}
+                    isVisible={modalVisible}
                     statusBarTranslucent
+                    hasBackdrop
+                    propagateSwipe
+                    onBackdropPress={() => setModalVisible(!modalVisible)}
                 >
-                    <View style={[styles.centeredView, { backgroundColor: "rgba(0, 0, 0, 0.5)" }]} >
+                    <View style={styles.centeredView} >
                         <View style={styles.modalView}>
                             <TouchableOpacity style={styles.indicator} onPress={() => setModalVisible(!modalVisible)} />
                             <Text style={styles.title}>Select Time</Text>
@@ -176,6 +175,7 @@ export default function CustomDateTime({ time = false, required = false, label, 
                                         containerStyle={{ height: 110 }}
                                         itemStyle={{ alignSelf: "flex-end", bottom: 50, right: 10 }}
                                         selectedIndex={selectedHour}
+                                        decelerationRate={15}
                                         options={hours}
                                         onChange={(index) => setSelectedHour(index)}
                                     />
@@ -188,6 +188,7 @@ export default function CustomDateTime({ time = false, required = false, label, 
                                         itemStyle={{ alignSelf: "flex-start", bottom: 50, left: 10, fontSize: 20 }}
                                         selectedIndex={selectedMinute}
                                         options={minutes}
+                                        decelerationRate={15}
                                         onChange={(index) => setSelectedMinute(index)}
                                     />
                                 </View>
